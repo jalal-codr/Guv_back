@@ -1,0 +1,34 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Guv server
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted 
+
+    strategy:
+      matrix:
+        node-version: [20]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: 'npm'
+    - run: npm ci
+    - run: touch .env
+    - run: echo "MONGO_DB_URL=mongodb+srv://panda:panda@govcluster.8iif2pc.mongodb.net/?retryWrites=true&w=majority" >> .env
+    - run: echo  "CLOUDINARY_API_KEY=745844857277876" >> .env
+    - run: echo  "CLOUDINARY_API_SECRET=zgWcQ0y8EU152bZrk7zU48-Enl4" >> .env
+    - run: echo  "CLOUDINARY_CLOUD_NAME=jalals" >> .env
+    - run: sudo pm2 restart index
