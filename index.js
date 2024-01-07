@@ -51,7 +51,7 @@ app.use('/get-comments',commentsRoutes)
 app.use('/new-comment',commentsRoutes)
 
 app.get("/",(req,res)=>{
-    res.send("Guv server running")
+    res.send("Guv server live")
 })
 
 
