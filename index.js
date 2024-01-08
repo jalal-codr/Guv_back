@@ -29,6 +29,7 @@ const messageRoutes = require('./Routes/Messages.routes')
 const ChatGptRoutes = require('./Routes/ChatGpt.routes')
 const CloudinaryRoutes = require('./Routes/Cloudinary.routes')
 const commentsRoutes =  require('./Routes/Comments.routes')
+const DeleteBlogRoute = require('./Routes/DeleteBlog.routes')
 
 
 
@@ -49,6 +50,7 @@ app.use('/upload-image',CloudinaryRoutes)
 app.use('/get-uploaded-image',CloudinaryRoutes)
 app.use('/get-comments',commentsRoutes)
 app.use('/new-comment',commentsRoutes)
+app.use('/delet-blog',DeleteBlogRoute)
 
 app.get("/",(req,res)=>{
     res.send("Guv server live")
