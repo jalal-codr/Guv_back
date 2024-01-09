@@ -89,6 +89,9 @@ io.on('connection',(socket)=>{
     socket.on('newMessage',(data)=>{
        io.emit("getMessages",data);
     });
+    socket.on("blogDeleted",()=>{
+        io.emit("GetBlogs")
+    })
 })
 
 

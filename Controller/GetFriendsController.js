@@ -5,7 +5,12 @@ const Blogs = require('../Models/Blogs')
 const getFriends = (req,res)=>{
     try{
         const email = req.body.email;
-        Friends.find({from:email} || {to:email})
+        Friends.find({
+            $or:[
+                {to:email},
+                {from:email}
+            ]
+        })
         .then((data)=>{
             res.send(data)
         })
