@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const {getRequests,createRequests} = require('../Controller/RequestsController')
+const { verifyToken } = require('../Middleware/firebaseAuth/Auth')
 
-router.put('/',getRequests)
-router.post('/',createRequests)
+router.put('/',verifyToken,getRequests)
+router.post('/',verifyToken,createRequests)
 // router.post('/',acceptRequest)
 // router.post('/',declineRequest)
 
