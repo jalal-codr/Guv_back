@@ -86,8 +86,8 @@ io.on('connection',(socket)=>{
         socket.join(data)
         console.log(`joined room ${data}`)
     })
-    socket.on('newMessage',(data)=>{
-       io.emit("getMessages",data);
+    socket.on('newMessage',()=>{
+       io.emit("getMessages");
     });
     socket.on("blogDeleted",()=>{
         io.emit("GetBlogs")
