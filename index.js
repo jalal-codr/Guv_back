@@ -5,6 +5,7 @@ const http  = require('http')
 const app = express()
 const bodyParser = require('body-parser')
 const {Server} = require('socket.io')
+const limiter = require('./Middleware/limiter/limiter')
 require('dotenv').config()
 app.use(express.json())
 app.use(bodyParser.json())
@@ -55,6 +56,8 @@ app.use('/delet-blog',DeleteBlogRoute)
 app.get("/",(req,res)=>{
     res.send("Guv server live")
 })
+
+app.use(limiter);
 
 
 
